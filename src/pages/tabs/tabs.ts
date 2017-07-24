@@ -11,8 +11,6 @@ import { Tabs, NavController } from 'ionic-angular';
 })
 export class TabsPage {
   @ViewChild('myTabs') tabRef: Tabs;
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
   tab1Root: any = GamePage;
   tab2Root: any = SettingPage;
 
