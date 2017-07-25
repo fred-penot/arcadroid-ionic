@@ -8,7 +8,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let game of gameList" (click)="openMenu()">
+    <ion-item *ngFor="let game of gameList" (click)="openMenu(game.id)">
       <h2>{{game.name}}</h2>
       <p>{{game.type.name}}</p>
     </ion-item>

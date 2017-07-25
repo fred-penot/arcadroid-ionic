@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>
-            Description
+            {{gameInfo.name}}
         </ion-title>
         <ion-buttons start>
             <button ion-button (click)="dismiss()">
@@ -13,5 +13,22 @@
 </ion-header>
 
 <ion-content>
-
+    <ion-list>
+        <ion-item *ngFor="let screenview of gameScreen">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-card>
+                            <img src="{{screenview.img1}}"/>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-card>
+                            <img src="{{screenview.img2}}"/>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
 </ion-content>

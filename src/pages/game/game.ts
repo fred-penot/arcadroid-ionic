@@ -26,7 +26,7 @@ export class GamePage {
     });
   }
 
-  openMenu() {
+  openMenu(gameId) {
     let actionSheet = this.actionsheetCtrl.create({
       cssClass: 'game-menu',
       buttons: [
@@ -34,8 +34,7 @@ export class GamePage {
           text: 'Infos',
           icon: !this.platform.is('ios') ? 'ios-information-circle-outline' : null,
           handler: () => {
-            console.log('Infos clicked');
-            this.openModal();
+            this.openModal({"gameId": gameId});
           }
         },
         {
@@ -72,8 +71,8 @@ export class GamePage {
     actionSheet.present();
   }
 
-  openModal() {
-    let modal = this.modalCtrl.create(GameInfo);
+  openModal(gameId) {
+    let modal = this.modalCtrl.create(GameInfo, gameId);
     modal.present();
   }
 }
