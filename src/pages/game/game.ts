@@ -41,21 +41,40 @@ export class GamePage {
           text: 'Lancer',
           icon: !this.platform.is('ios') ? 'ios-flash-outline' : null,
           handler: () => {
-            console.log('Lancer clicked');
+            this.commonService.loadingShow('Please wait...');
+            this.gameService.getCurrent().then(dataCurrent => {
+              if (dataCurrent != null) {
+                this.gameService.stop().then(dataStop => {});
+              }
+              this.gameService.launch(gameId).then(data => {
+                this.commonService.loadingHide();
+              });
+            });
           }
         },
         {
           text: 'Stopper',
           icon: !this.platform.is('ios') ? 'ios-power-outline' : null,
           handler: () => {
-            console.log('Stopper clicked');
+            this.commonService.loadingShow('Please wait...');
+            this.gameService.stop().then(data => {
+              this.commonService.loadingHide();
+            });
           }
         },
         {
           text: 'Relancer',
           icon: !this.platform.is('ios') ? 'ios-refresh-outline' : null,
           handler: () => {
-            console.log('Relancer clicked');
+            this.commonService.loadingShow('Please wait...');
+            this.gameService.getCurrent().then(dataCurrent => {
+              if (dataCurrent != null) {
+                this.gameService.stop().then(dataStop => {});
+              }
+              this.gameService.launch(gameId).then(data => {
+                this.commonService.loadingHide();
+              });
+            });
           }
         },
         {

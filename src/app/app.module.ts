@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { GamePage } from '../pages/game/game';
 import { GameInfo } from '../pages/game/info';
+import { CurrentPage } from '../pages/game/current';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/index';
@@ -14,6 +15,7 @@ import { LoginPage } from '../pages/login/index';
     LoginPage,
     GamePage,
     GameInfo,
+    CurrentPage,
     SettingPage,
     TabsPage
   ],
@@ -26,6 +28,7 @@ import { LoginPage } from '../pages/login/index';
     LoginPage,
     GamePage,
     GameInfo,
+    CurrentPage,
     SettingPage,
     TabsPage
   ],
