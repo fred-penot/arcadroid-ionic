@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 import { App, NavController, Platform, LoadingController, ToastController } from 'ionic-angular';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { Toast } from '@ionic-native/toast';
+//import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+//import { Toast } from '@ionic-native/toast';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -13,8 +13,8 @@ export class CommonService {
   private loader: any = null;
 
   constructor(public app: App, public navCtrl: NavController, public http: Http, public storage: Storage, public platform: Platform,
-              public loadingCtrl: LoadingController, public toastCtrl: ToastController,
-              public spinnerDialog: SpinnerDialog, public toast: Toast
+              public loadingCtrl: LoadingController, public toastCtrl: ToastController
+              //, public spinnerDialog: SpinnerDialog, public toast: Toast
   ) {
 
   }
@@ -97,7 +97,7 @@ export class CommonService {
 
   loadingShow(message) {
     if (this.platform.is('cordova')) {
-      this.spinnerDialog.show(null, message);
+      //this.spinnerDialog.show(null, message);
     } else {
       let loading = this.loadingCtrl.create({
         content: message
@@ -109,7 +109,7 @@ export class CommonService {
 
   loadingHide() {
     if (this.platform.is('cordova')) {
-      this.spinnerDialog.hide();
+      //this.spinnerDialog.hide();
     } else {
       this.loader.dismiss();
     }
@@ -117,11 +117,11 @@ export class CommonService {
 
   toastShow(message) {
     if (this.platform.is('cordova')) {
-      this.toast.show(message, "short", "bottom").subscribe(
+      /*this.toast.show(message, "short", "bottom").subscribe(
           toast => {
             console.log(toast);
           }
-      );
+      );*/
     } else {
       let toast = this.toastCtrl.create({
         message: message,
