@@ -53,33 +53,8 @@ export class GamePage {
           }
         },
         {
-          text: 'Stopper',
-          icon: !this.platform.is('ios') ? 'ios-power-outline' : null,
-          handler: () => {
-            this.commonService.loadingShow('Please wait...');
-            this.gameService.stop().then(data => {
-              this.commonService.loadingHide();
-            });
-          }
-        },
-        {
-          text: 'Relancer',
-          icon: !this.platform.is('ios') ? 'ios-refresh-outline' : null,
-          handler: () => {
-            this.commonService.loadingShow('Please wait...');
-            this.gameService.getCurrent().then(dataCurrent => {
-              if (dataCurrent != null) {
-                this.gameService.stop().then(dataStop => {});
-              }
-              this.gameService.launch(gameId).then(data => {
-                this.commonService.loadingHide();
-              });
-            });
-          }
-        },
-        {
           text: 'Annuler',
-          role: 'cancel', // will always sort to be on the bottom
+          role: 'cancel',
           icon: !this.platform.is('ios') ? 'close' : null,
           handler: () => {
             console.log('Annuler clicked');

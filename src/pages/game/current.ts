@@ -12,18 +12,25 @@ import { GameService } from '../../providers/game-service';
 export class CurrentPage {
   private gameName: any = 'Aucun';
   private gameScreen: any = [];
+  private showButton: boolean = false;
 
   constructor(public navCtrl: NavController,
               public gameService: GameService,
               public commonService: CommonService) {
+  }
 
+  ionViewDidEnter() {
     this.init();
   }
 
   init() {
     this.commonService.loadingShow('Please wait...');
+    this.gameScreen = [];
+    this.gameName = '';
+    this.showButton = false;
     this.gameService.getCurrent().then(dataCurrent => {
       if (dataCurrent != null) {
+        this.showButton = true;
         this.gameName = dataCurrent['name'];
         let rowCount:any = 0;
         let row: any = {};
@@ -37,8 +44,30 @@ export class CurrentPage {
           }
           rowCount++;
         }
+      } else {
+        this.gameName = 'Aucun';
       }
       this.commonService.loadingHide();
+    });
+  }
+
+  stop() {
+    this.commonService.loadingShow('Please wait...');
+    this.gameService.stop().then(dataStop => {
+      this.commonService.loadingHide();
+      this.init();
+    });
+  }
+
+  restart() {
+    this.commonService.loadingShow('Please wait...');
+    this.gameService.getCurrent().then(dataCurrent => {
+      this.gameService.stop().then(dataStop => {
+        this.gameService.launch(dataCurrent['id']).then(dataLaunch => {
+          this.commonService.loadingHide();
+          this.init();
+        });
+      });
     });
   }
 }

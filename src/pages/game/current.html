@@ -8,6 +8,14 @@
 
 <ion-content>
   <ion-list>
+    <ion-item *ngIf="showButton">
+      <button ion-button full color="danger" (click)="stop()">Stopper</button>
+    </ion-item>
+    <ion-item *ngIf="showButton">
+      <button ion-button full (click)="restart()">Relancer</button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
     <ion-item *ngFor="let screenview of gameScreen">
       <ion-grid>
         <ion-row>
