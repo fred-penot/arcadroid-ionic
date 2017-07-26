@@ -1,7 +1,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Liste des jeux
+      <ion-item>
+      <ion-label>Liste des jeux</ion-label>
+      <ion-select [(ngModel)]="emulatorId" (ionChange)="refreshList()">
+        <ion-option *ngFor="let emulator of emulatorList" [value]="emulator.id">{{emulator.name}}</ion-option>
+      </ion-select>
+      </ion-item>
     </ion-title>
   </ion-navbar>
 </ion-header>

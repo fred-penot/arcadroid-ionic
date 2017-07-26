@@ -11,6 +11,8 @@ import { GameInfo } from '../../pages/game/info';
 })
 export class GamePage {
   private gameList: any = [];
+  private emulatorList: any = [];
+  private emulatorId:any = 1;
 
   constructor(public platform: Platform, public actionsheetCtrl: ActionSheetController,
               public modalCtrl: ModalController,
@@ -20,6 +22,10 @@ export class GamePage {
 
   init() {
     this.commonService.loadingShow('Please wait...');
+    this.gameService.getEmulator().then(data => {
+      this.emulatorList = data;
+      this.emulatorId = 1;
+    });
     this.gameService.getList().then(data => {
       this.gameList = data;
       this.commonService.loadingHide();
@@ -68,6 +74,14 @@ export class GamePage {
   openModal(gameId) {
     let modal = this.modalCtrl.create(GameInfo, gameId);
     modal.present();
+  }
+
+  refreshList() {
+    this.commonService.loadingShow('Please wait...');
+    this.gameService.getEmulatorList(this.emulatorId).then(data => {
+      this.gameList = data;
+      this.commonService.loadingHide();
+    });
   }
 }
 

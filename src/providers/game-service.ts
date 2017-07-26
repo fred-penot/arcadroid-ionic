@@ -12,6 +12,8 @@ export class GameService {
     private routeLaunch: any = '/game/launch';
     private routeStop: any = '/game/stop';
     private routeGetCurrent: any = '/game/current';
+    private routeGetEmulator: any = '/game/get/emulator';
+    private routeListEmulator: any = '/game/list/emulator';
 
     constructor(public http: Http, public commonService: CommonService) {
         
@@ -102,6 +104,52 @@ export class GameService {
                 };
                 let param:any = JSON.stringify(request);
                 this.http.post(this.commonService.getUrlApi()+this.routeGetCurrent, param)
+                    .map(res => res.json())
+                    .subscribe(
+                        response => {
+                            this.commonService.setToken(response.token);
+                            resolve(response.data);
+                        },
+                        err => {
+                            resolve(this.commonService.errorApiReturn(err));
+                        }
+                    );
+            });
+        });
+    }
+
+    getEmulator() {
+        return new Promise(resolve => {
+            this.commonService.getToken().then(token => {
+                let request: any = {
+                    "token": token
+                };
+                let param:any = JSON.stringify(request);
+                this.http.post(this.commonService.getUrlApi()+this.routeGetEmulator, param)
+                    .map(res => res.json())
+                    .subscribe(
+                        response => {
+                            this.commonService.setToken(response.token);
+                            resolve(response.data);
+                        },
+                        err => {
+                            resolve(this.commonService.errorApiReturn(err));
+                        }
+                    );
+            });
+
+        });
+    }
+
+    getEmulatorList(emulatorId) {
+        return new Promise(resolve => {
+            this.commonService.getToken().then(token => {
+                let request: any = {
+                    "token": token,
+                    "emulatorId": emulatorId
+                };
+                let param:any = JSON.stringify(request);
+                this.http.post(this.commonService.getUrlApi()+this.routeListEmulator, param)
                     .map(res => res.json())
                     .subscribe(
                         response => {
