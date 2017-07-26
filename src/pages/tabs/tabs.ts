@@ -14,7 +14,7 @@ export class TabsPage {
   @ViewChild('myTabs') tabRef: Tabs;
   tab1Root: any = GamePage;
   tab2Root: any = CurrentPage;
-  //tab3Root: any = SettingPage;
+  tab3Root: any = SettingPage;
 
   constructor(public navCtrl: NavController) {
 
