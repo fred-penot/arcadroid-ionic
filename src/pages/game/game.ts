@@ -52,9 +52,8 @@ export class GamePage {
               if (dataCurrent != null) {
                 this.gameService.stop().then(dataStop => {});
               }
-              this.gameService.launch(gameId).then(data => {
-                this.commonService.loadingHide();
-              });
+              this.gameService.launch(gameId);
+              this.commonService.loadingHide();
             });
           }
         },

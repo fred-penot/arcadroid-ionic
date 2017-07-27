@@ -52,25 +52,23 @@ export class GameService {
     }
 
     launch(id) {
-        return new Promise(resolve => {
-            this.commonService.getToken().then(token => {
-                let request: any = {
-                    "token": token,
-                    "id": id
-                };
-                let param:any = JSON.stringify(request);
-                this.http.post(this.commonService.getUrlApi()+this.routeLaunch, param)
-                    .map(res => res.json())
-                    .subscribe(
-                        response => {
-                            this.commonService.setToken(response.token);
-                            resolve(response.data);
-                        },
-                        err => {
-                            resolve(this.commonService.errorApiReturn(err));
-                        }
-                    );
-            });
+        this.commonService.getToken().then(token => {
+            let request: any = {
+                "token": token,
+                "id": id
+            };
+            let param:any = JSON.stringify(request);
+            this.http.post(this.commonService.getUrlApi()+this.routeLaunch, param)
+                .map(res => res.json())
+                .subscribe(
+                    response => {
+                        this.commonService.setToken(response.token);
+                        //resolve(response.data);
+                    },
+                    err => {
+                        //resolve(this.commonService.errorApiReturn(err));
+                    }
+                );
         });
     }
 

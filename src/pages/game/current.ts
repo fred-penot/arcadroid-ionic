@@ -63,10 +63,9 @@ export class CurrentPage {
     this.commonService.loadingShow('Please wait...');
     this.gameService.getCurrent().then(dataCurrent => {
       this.gameService.stop().then(dataStop => {
-        this.gameService.launch(dataCurrent['id']).then(dataLaunch => {
-          this.commonService.loadingHide();
-          this.init();
-        });
+        this.gameService.launch(dataCurrent['id']);
+        this.commonService.loadingHide();
+        this.init();
       });
     });
   }
